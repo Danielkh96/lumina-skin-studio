@@ -351,7 +351,7 @@ export default function Home() {
 
       <section id="contact" className="px-5 pb-10 pt-12 md:px-8">
         <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[3rem] bg-[#2f2420] p-8 text-white shadow-2xl md:p-16">
-          <Image src="/images/cta-bg.png" alt="Soft luxury skincare background" width={1200} height={700} className="absolute inset-0 h-full w-full object-cover opacity-30" />
+          <Image src="/images/cta-bg.png" alt="Soft luxury skincare background" width={1200} height={700} unoptimized className="absolute inset-0 h-full w-full object-cover opacity-30" />
           <div className="relative max-w-3xl">
             <p className="mb-3 text-sm font-bold uppercase tracking-[0.35em] text-[#f1cda5]">Book now</p>
             <h2 className="font-serif text-4xl leading-tight md:text-7xl">Ready for your most luminous skin season?</h2>
