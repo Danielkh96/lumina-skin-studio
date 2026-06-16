@@ -149,9 +149,9 @@ function AnimatedCounter({ value, suffix = "", decimals = 0 }: { value: number; 
     const node = ref.current;
     if (!node) return;
     if (reducedMotion) return;
-    requestAnimationFrame(() => setDisplay(0));
     const observer = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return;
+      setDisplay(0);
       const obj = { current: 0 };
       gsap.to(obj, {
         current: value,
