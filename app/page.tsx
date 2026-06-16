@@ -33,31 +33,31 @@ const services = [
     title: "Deep Hydration Facial",
     tag: "Dry & dull skin",
     desc: "A moisture-lock ritual with calming massage, barrier support, and dewy post-facial glow.",
-    image: "/images/hydration.svg",
+    image: "/images/hydration.png",
   },
   {
     title: "Clear Acne Reset",
     tag: "Congestion & breakouts",
     desc: "Gentle extraction, soothing blue-light inspired care, and a plan for clearer, calmer skin.",
-    image: "/images/acne.svg",
+    image: "/images/acne.png",
   },
   {
     title: "Brightening Glow Therapy",
     tag: "Pigmentation & uneven tone",
     desc: "A radiance-focused treatment designed to soften dullness and reveal a luminous complexion.",
-    image: "/images/brightening.svg",
+    image: "/images/brightening.png",
   },
   {
     title: "Age-Defying Lift Facial",
     tag: "Fine lines & firmness",
     desc: "Sculpting touch, peptide-rich care, and a plump finish for skin that looks refreshed.",
-    image: "/images/anti-aging.svg",
+    image: "/images/anti-aging.png",
   },
   {
     title: "Sensitive Repair Ritual",
     tag: "Redness & fragile barrier",
     desc: "Fragrance-conscious comfort care with cooling layers for sensitive, reactive skin.",
-    image: "/images/sensitive.svg",
+    image: "/images/sensitive.png",
   },
 ];
 
@@ -96,18 +96,11 @@ function useReducedMotion() {
 
 function SectionTitle({ eyebrow, title, subtitle }: { eyebrow: string; title: string; subtitle?: string }) {
   return (
-    <motion.div
-      variants={fadeUp}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      className="mx-auto mb-12 max-w-3xl text-center"
-    >
+    <div className="mx-auto mb-12 max-w-3xl text-center">
       <p className="mb-3 text-sm font-semibold uppercase tracking-[0.35em] text-[#b88a5a]">{eyebrow}</p>
       <h2 className="font-serif text-4xl leading-tight text-[#2f2420] md:text-6xl">{title}</h2>
       {subtitle && <p className="mt-5 text-base leading-8 text-[#6d5b53] md:text-lg">{subtitle}</p>}
-    </motion.div>
+    </div>
   );
 }
 
@@ -237,7 +230,7 @@ export default function Home() {
           <motion.div className="parallax-soft relative">
             <div className="absolute -inset-5 rounded-[3rem] bg-gradient-to-br from-[#e7bf8c]/40 via-[#f6ddd3]/40 to-white blur-2xl" />
             <div className="relative overflow-hidden rounded-[3rem] border border-white/80 bg-white/55 p-4 shadow-[0_30px_100px_rgba(126,83,53,0.22)] backdrop-blur-xl">
-              <Image src="/images/hero-bg.svg" alt="Elegant facial skincare treatment room" width={920} height={1080} priority className="h-[560px] w-full rounded-[2.35rem] object-cover" />
+              <Image src="/images/hero-bg.png" alt="Elegant facial skincare treatment room" width={920} height={1080} priority className="h-[560px] w-full rounded-[2.35rem] object-cover" />
               <div className="absolute bottom-8 left-8 right-8 rounded-[2rem] border border-white/70 bg-white/72 p-5 shadow-xl backdrop-blur-2xl">
                 <div className="flex items-center justify-between gap-5">
                   <div>
@@ -262,7 +255,7 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
           <motion.div variants={fadeUp} whileInView="visible" viewport={{ once: true }} transition={{ duration: 0.7 }} className="relative">
             <div className="absolute -inset-4 rounded-[3rem] bg-[#efd8cd] blur-2xl" />
-            <Image src="/images/about-visual.svg" alt="Personalized skincare consultation" width={900} height={700} className="relative rounded-[3rem] border border-white shadow-2xl" />
+            <Image src="/images/about-visual.png" alt="Personalized skincare consultation" width={900} height={700} className="relative rounded-[3rem] border border-white shadow-2xl" />
           </motion.div>
           <div className="gsap-reveal">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.35em] text-[#b88a5a]">About the studio</p>
@@ -299,7 +292,7 @@ export default function Home() {
           <SectionTitle eyebrow="Visible confidence" title="Before & after style results without unrealistic promises." subtitle="We focus on healthier-looking skin: calmer redness, softer texture, brighter tone, and stronger barrier comfort." />
           <div className="grid items-center gap-8 lg:grid-cols-[0.95fr_1.05fr]">
             <div className="showcase-orb relative rounded-[3rem] border border-[#ead8ca] bg-white p-4 shadow-2xl">
-              <Image src="/images/results-visual.svg" alt="Before and after skincare glow results" width={900} height={760} className="rounded-[2.35rem]" />
+              <Image src="/images/results-visual.png" alt="Before and after skincare glow results" width={900} height={760} className="rounded-[2.35rem]" />
             </div>
             <div className="grid gap-5">
               {[['Hydration','Skin looks plumper and makeup sits smoother.'],['Acne calm','Congestion plan with less angry-looking breakouts.'],['Bright glow','Dull tone appears fresher and more luminous.'],['Barrier repair','Sensitive skin feels comforted, not stripped.']].map(([title, desc]) => <div key={title} className="gsap-reveal rounded-[2rem] border border-[#ead8ca] bg-white/70 p-6 shadow-sm"><h3 className="font-serif text-3xl text-[#3a2b25]">{title}</h3><p className="mt-2 leading-7 text-[#6d5b53]">{desc}</p></div>)}
@@ -358,7 +351,7 @@ export default function Home() {
 
       <section id="contact" className="px-5 pb-10 pt-12 md:px-8">
         <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[3rem] bg-[#2f2420] p-8 text-white shadow-2xl md:p-16">
-          <Image src="/images/cta-bg.svg" alt="Soft luxury skincare background" width={1200} height={700} className="absolute inset-0 h-full w-full object-cover opacity-30" />
+          <Image src="/images/cta-bg.png" alt="Soft luxury skincare background" width={1200} height={700} className="absolute inset-0 h-full w-full object-cover opacity-30" />
           <div className="relative max-w-3xl">
             <p className="mb-3 text-sm font-bold uppercase tracking-[0.35em] text-[#f1cda5]">Book now</p>
             <h2 className="font-serif text-4xl leading-tight md:text-7xl">Ready for your most luminous skin season?</h2>

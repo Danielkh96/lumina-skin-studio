@@ -12,6 +12,7 @@ Premium animated beauty salon landing page for a facial skincare business offeri
 - GSAP ScrollTrigger
 - Lenis smooth scrolling
 - lucide-react icons
+- OpenAI GPT Image 2 generated section visuals
 
 ## Sections
 
@@ -26,7 +27,19 @@ Premium animated beauty salon landing page for a facial skincare business offeri
 
 ## Visuals
 
-AI image generation was attempted, but the environment did not have image generation credentials configured. Premium custom SVG fallback visuals were created under `public/images/` to match the beige, white, nude pink, and gold beauty salon palette.
+Each major section uses a matching GPT Image 2 generated PNG saved under `public/images/`:
+
+- `hero-bg.png`
+- `about-visual.png`
+- `hydration.png`
+- `acne.png`
+- `brightening.png`
+- `anti-aging.png`
+- `sensitive.png`
+- `results-visual.png`
+- `cta-bg.png`
+
+No API keys or secrets are committed to this repository.
 
 ## Run locally
 
