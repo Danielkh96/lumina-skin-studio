@@ -64,27 +64,36 @@ const services = [
 
 const showcaseMoments = [
   {
-    title: "Consultation-led care",
-    desc: "A calm skin mapping moment turns the visit into a personal glow plan, not a random facial.",
+    title: "Skin concern",
+    concern: "Dryness, acne marks, dull tone, or fragile barrier",
+    desc: "The journey starts by naming the real concern so visitors instantly see themselves in the experience.",
+    image: "/images/sensitive.png",
+  },
+  {
+    title: "Consultation",
+    concern: "Personal skin mapping before any product touches the skin",
+    desc: "A calm consultation turns uncertainty into a personal glow plan, not a random facial menu.",
     image: "/images/about-visual.png",
   },
   {
-    title: "Treatment matched to mood",
-    desc: "Hydration, acne calm, brightening, lift, or repair — the ritual adapts to how your skin feels that day.",
+    title: "Treatment",
+    concern: "Hydrate, clear, brighten, lift, or repair — matched to today's skin",
+    desc: "Each step feels intentional: cleansing, massage, targeted mask therapy, and barrier-supporting aftercare.",
     image: "/images/hydration.png",
   },
   {
-    title: "Glow that keeps them scrolling",
-    desc: "Soft result storytelling, elegant motion, and warm rose-gold light create an emotional premium journey.",
+    title: "Visible result",
+    concern: "Calmer texture, softer glow, stronger confidence",
+    desc: "The story ends with a realistic transformation and a clear invitation to book the next glow session.",
     image: "/images/results-visual.png",
   },
 ];
 
 const stats = [
-  [4.9, "Client rating", "★"],
-  [35, "Glow consult", " min"],
-  [5, "Skin goals", ""],
-  [1200, "Happy facials", "+"],
+  [1200, "Happy clients", "+"],
+  [4800, "Skin treatments", "+"],
+  [98, "Satisfaction rate", "%"],
+  [8, "Years experience", "+"],
 ] as const;
 
 const benefits = [
@@ -231,15 +240,15 @@ function FloatingParticles() {
 function StickyShowcase({ reducedMotion }: { reducedMotion: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
-  const activeIndex = useTransform(scrollYProgress, [0, 0.38, 0.7, 1], [0, 1, 2, 2]);
+  const activeIndex = useTransform(scrollYProgress, [0, 0.28, 0.55, 0.82, 1], [0, 1, 2, 3, 3]);
   const [current, setCurrent] = useState(0);
 
-  useEffect(() => activeIndex.on("change", (v) => setCurrent(Math.min(2, Math.max(0, Math.round(v))))), [activeIndex]);
+  useEffect(() => activeIndex.on("change", (v) => setCurrent(Math.min(3, Math.max(0, Math.round(v))))), [activeIndex]);
 
   return (
-    <section ref={ref} className="relative bg-[#fffaf6] px-5 py-24 md:px-8 lg:h-[230vh]">
+    <section ref={ref} className="relative bg-[#fffaf6] px-5 py-24 md:px-8 lg:h-[270vh]">
       <div className="mx-auto max-w-7xl lg:sticky lg:top-24">
-        <SectionTitle eyebrow="Scroll ritual" title="A sticky glow journey that changes as you scroll." subtitle="Each moment reveals a new reason to trust the studio — consultation, treatment, and visible confidence." />
+        <SectionTitle eyebrow="Scroll storytelling" title="Concern → consultation → treatment → visible result → booking." subtitle="A premium sticky journey keeps the left-side story anchored while the right-side visual changes smoothly as visitors scroll." />
         <div className="grid items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="space-y-4">
             {showcaseMoments.map((item, index) => (
@@ -250,6 +259,7 @@ function StickyShowcase({ reducedMotion }: { reducedMotion: boolean }) {
               >
                 <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#b88a5a]">0{index + 1}</p>
                 <h3 className="mt-3 font-serif text-3xl text-[#2f2420]">{item.title}</h3>
+                <p className="mt-3 text-sm font-semibold uppercase tracking-[0.18em] text-[#b88a5a]">{item.concern}</p>
                 <p className="mt-3 leading-7 text-[#6d5b53]">{item.desc}</p>
               </motion.div>
             ))}
@@ -257,9 +267,80 @@ function StickyShowcase({ reducedMotion }: { reducedMotion: boolean }) {
           <motion.div layout className="relative overflow-hidden rounded-[3rem] border border-white bg-white p-4 shadow-[0_30px_100px_rgba(120,79,49,0.18)]">
             <div className="absolute -inset-8 bg-[radial-gradient(circle_at_40%_20%,rgba(216,166,108,0.22),transparent_42%)]" />
             <motion.div key={current} initial={reducedMotion ? false : { opacity: 0, scale: 1.04, y: 22 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.65, ease: "easeOut" }} className="relative">
-              <Image src={showcaseMoments[current].image} alt={showcaseMoments[current].title} width={1100} height={760} loading="eager" className="h-[460px] w-full rounded-[2.25rem] object-cover" />
+              <Image src={showcaseMoments[current].image} alt={showcaseMoments[current].title} width={1100} height={760} loading="eager" unoptimized className="h-[460px] w-full rounded-[2.25rem] object-cover" />
             </motion.div>
           </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+function BeforeAfterSlider() {
+  const [position, setPosition] = useState(58);
+
+  return (
+    <section className="px-5 py-24 md:px-8">
+      <div className="mx-auto max-w-7xl">
+        <SectionTitle
+          eyebrow="Before / after reveal"
+          title="Slide from stressed skin mood to luminous calm."
+          subtitle="An elegant transformation interaction makes the result feel tangible without making unrealistic medical promises."
+        />
+        <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="relative overflow-hidden rounded-[3rem] border border-white bg-white p-4 shadow-[0_30px_100px_rgba(120,79,49,0.18)]">
+            <div className="relative h-[460px] overflow-hidden rounded-[2.35rem] bg-[#f4e4da]">
+              <Image src="/images/acne.png" alt="Before skincare concern mood" width={1100} height={760} loading="eager" unoptimized className="absolute inset-0 h-full w-full object-cover saturate-[0.82]" />
+              <div className="absolute inset-0 bg-[#3d2b24]/18" />
+              <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}>
+                <Image src="/images/brightening.png" alt="After luminous skincare glow mood" width={1100} height={760} loading="eager" unoptimized className="h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-[#d7a66c]/10" />
+              </div>
+              <div className="absolute bottom-6 left-6 rounded-full bg-white/78 px-4 py-2 text-sm font-bold text-[#604f47] shadow-lg backdrop-blur">Before: concern</div>
+              <div className="absolute bottom-6 right-6 rounded-full bg-white/78 px-4 py-2 text-sm font-bold text-[#9f7048] shadow-lg backdrop-blur">After: glow</div>
+              <div className="absolute inset-y-0 w-px bg-white shadow-[0_0_28px_rgba(255,255,255,0.95)]" style={{ left: `${position}%` }} />
+              <motion.div className="absolute top-1/2 grid h-14 w-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/80 bg-white/80 text-[#9f7048] shadow-2xl backdrop-blur" style={{ left: `${position}%` }} animate={{ scale: [1, 1.06, 1] }} transition={{ duration: 2.2, repeat: Infinity }}>
+                ↔
+              </motion.div>
+              <input
+                aria-label="Before after reveal slider"
+                type="range"
+                min="18"
+                max="82"
+                value={position}
+                onChange={(event) => setPosition(Number(event.target.value))}
+                className="absolute inset-x-6 bottom-20 z-20 h-2 cursor-ew-resize appearance-none rounded-full bg-white/60 accent-[#b88a5a]"
+              />
+            </div>
+          </div>
+          <div className="gsap-reveal rounded-[3rem] border border-[#ead8ca] bg-white/70 p-8 shadow-sm backdrop-blur">
+            <p className="text-sm font-bold uppercase tracking-[0.32em] text-[#b88a5a]">Interactive proof moment</p>
+            <h3 className="mt-4 font-serif text-4xl leading-tight text-[#2f2420] md:text-5xl">Let visitors play with the glow.</h3>
+            <p className="mt-5 leading-8 text-[#6d5b53]">The slider creates a tactile pause in the scroll, giving potential clients a simple visual metaphor for moving from concern to confidence.</p>
+            <div className="mt-7 grid gap-3">
+              {['Calmer-looking texture', 'Brighter glow mood', 'Softer rose-gold finish'].map((item) => (
+                <div key={item} className="flex items-center gap-3 rounded-2xl bg-[#fff7f1] p-4 text-[#604f47]"><CheckCircle2 className="text-[#b88a5a]" size={18} /> {item}</div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProofCounters() {
+  return (
+    <section className="px-5 py-20 md:px-8">
+      <div className="mx-auto max-w-7xl rounded-[3rem] border border-[#ead8ca] bg-white/70 p-6 shadow-[0_22px_80px_rgba(120,79,49,0.10)] backdrop-blur md:p-10">
+        <div className="grid gap-5 md:grid-cols-4">
+          {stats.map(([value, label, suffix]) => (
+            <motion.div key={label} whileHover={{ y: -8, scale: 1.015 }} className="rounded-[2rem] bg-gradient-to-br from-white to-[#fff1e8] p-7 text-center shadow-sm">
+              <p className="font-serif text-5xl text-[#9f7048]"><AnimatedCounter value={value} suffix={suffix} /></p>
+              <p className="mt-3 text-xs font-bold uppercase tracking-[0.28em] text-[#7a6a62]">{label}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
@@ -390,7 +471,7 @@ export default function Home() {
             <motion.div initial={false} whileInView={{ opacity: 1, y: 0 }} className="hero-entrance hero-delay-4 mt-10 grid max-w-2xl grid-cols-2 gap-4 sm:grid-cols-4">
               {stats.map(([value, label, suffix]) => (
                 <div key={label} className="rounded-3xl border border-white/80 bg-white/55 p-4 shadow-sm backdrop-blur transition hover:-translate-y-1 hover:shadow-xl">
-                  <p className="font-serif text-3xl text-[#9f7048]"><AnimatedCounter value={value} suffix={suffix} decimals={label === "Client rating" ? 1 : 0} /></p>
+                  <p className="font-serif text-3xl text-[#9f7048]"><AnimatedCounter value={value} suffix={suffix} decimals={0} /></p>
                   <p className="mt-1 text-xs uppercase tracking-widest text-[#7a6a62]">{label}</p>
                 </div>
               ))}
@@ -423,11 +504,13 @@ export default function Home() {
         </motion.div>
       </div>
 
+      <ProofCounters />
+
       <section id="about" className="px-5 py-24 md:px-8">
         <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
           <motion.div variants={fadeUp} whileInView="visible" viewport={{ once: true }} transition={{ duration: 0.7 }} className="relative">
             <div className="absolute -inset-4 rounded-[3rem] bg-[#efd8cd] blur-2xl" />
-            <div className="relative overflow-hidden rounded-[3rem] border border-white shadow-2xl"><Image src="/images/about-visual.png" alt="Personalized skincare consultation" width={900} height={700} className="transition duration-700 hover:scale-105" /></div>
+            <div className="relative overflow-hidden rounded-[3rem] border border-white shadow-2xl"><Image src="/images/about-visual.png" alt="Personalized skincare consultation" width={900} height={700} loading="eager" unoptimized className="transition duration-700 hover:scale-105" /></div>
           </motion.div>
           <div className="gsap-reveal">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.35em] text-[#b88a5a]">About the studio</p>
@@ -466,7 +549,7 @@ export default function Home() {
           <SectionTitle eyebrow="Visible confidence" title="Before & after style results without unrealistic promises." subtitle="We focus on healthier-looking skin: calmer redness, softer texture, brighter tone, and stronger barrier comfort." />
           <div className="grid items-center gap-8 lg:grid-cols-[0.95fr_1.05fr]">
             <div className="showcase-orb relative rounded-[3rem] border border-[#ead8ca] bg-white p-4 shadow-2xl">
-              <Image src="/images/results-visual.png" alt="Before and after skincare glow results" width={900} height={760} loading="eager" className="rounded-[2.35rem]" />
+              <Image src="/images/results-visual.png" alt="Before and after skincare glow results" width={900} height={760} loading="eager" unoptimized className="rounded-[2.35rem]" />
             </div>
             <div className="grid gap-5">
               {[['Hydration','Skin looks plumper and makeup sits smoother.'],['Acne calm','Congestion plan with less angry-looking breakouts.'],['Bright glow','Dull tone appears fresher and more luminous.'],['Barrier repair','Sensitive skin feels comforted, not stripped.']].map(([title, desc]) => <div key={title} className="gsap-reveal rounded-[2rem] border border-[#ead8ca] bg-white/70 p-6 shadow-sm"><h3 className="font-serif text-3xl text-[#3a2b25]">{title}</h3><p className="mt-2 leading-7 text-[#6d5b53]">{desc}</p></div>)}
@@ -474,6 +557,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <BeforeAfterSlider />
 
       <section className="bg-[#3d2b24] px-5 py-24 text-white md:px-8">
         <div className="mx-auto max-w-7xl">
